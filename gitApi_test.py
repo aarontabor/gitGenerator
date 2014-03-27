@@ -61,6 +61,11 @@ class TestGitApi:
     log = getCommitLog(initializedRepo)
     assert 'Joe Blow' in log
 
+  def test_can_commit_another_date(self, initializedRepo, stagedFile):
+    gitApi.commit(initializedRepo, 'test commit', date='2010/01/01 0:00:00')
+    log = getCommitLog(initializedRepo)
+    assert '2010' in log
+
 ############################
 def writeChange(filename):
     f = open(filename, 'w')

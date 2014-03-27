@@ -22,7 +22,7 @@ def stage(filename):
   commands.getoutput('git add %s' % basename)
   os.chdir(orig_dir)
 
-def commit(repo_path, commitMessage, author=None):
+def commit(repo_path, commitMessage, author=None, date=None):
   orig_dir = os.getcwd()
   os.chdir(repo_path)
 
@@ -31,7 +31,14 @@ def commit(repo_path, commitMessage, author=None):
   else:
     authorOption = ''
 
-  commands.getoutput('git commit %s -m "%s"' % (authorOption, commitMessage))
+  if date:
+    overrideDateOption = 'GIT_AUTHOR_DATE="%s" GIT_COMMITTER_DATE="%s"' % \
+        (date, date)
+  else:
+    overrideDateOption = ''
+
+  commands.getoutput('%s git commit %s -m "%s"' % \
+      (overrideDateOption, authorOption, commitMessage))
   os.chdir(orig_dir)
 
 
