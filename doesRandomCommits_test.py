@@ -7,9 +7,9 @@ import datetime
 class TestDoesRandomCommits:
 
   def test_commits_change(self):
-    doesCommits = DoesRandomCommits()
+    doesCommits = DoesRandomCommits('testDir')
     now = datetime.datetime.now()
-    assert doesCommits.commit('Alice', now)
+    assert doesCommits.commit(now)
 
   def test_it_calls_the_api(self):
     pass

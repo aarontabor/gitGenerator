@@ -1,5 +1,9 @@
 #!/usr/bin/python
 
 class DoesRandomCommits:
-  def commit(self, repoPath, authoredDate):
+  def __init__(self, repoPath, authors = [('John Doe', 'jdoe@email.com')]):
+    self.repoPath = repoPath
+    self.authors = authors
+
+  def commit(self, authoredDate):
     return True
