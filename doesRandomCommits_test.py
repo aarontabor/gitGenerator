@@ -11,7 +11,3 @@ class TestDoesRandomCommits:
     now = datetime.datetime.now()
     assert doesCommits.commit(now)
 
-  def test_it_calls_the_api(self):
-    pass
-
-
