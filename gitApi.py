@@ -22,10 +22,16 @@ def stage(filename):
   commands.getoutput('git add %s' % basename)
   os.chdir(orig_dir)
 
-def commit(repo_path, commitMessage):
+def commit(repo_path, commitMessage, author=None):
   orig_dir = os.getcwd()
   os.chdir(repo_path)
-  commands.getoutput('git commit -m "%s"' % commitMessage)
+
+  if author:
+    authorOption = '--author="%s"' % author
+  else:
+    authorOption = ''
+
+  commands.getoutput('git commit %s -m "%s"' % (authorOption, commitMessage))
   os.chdir(orig_dir)
 
 

@@ -56,6 +56,10 @@ class TestGitApi:
     gitApi.commit(initializedRepo, 'test commit')
     assert isCommitted(stagedFile)
 
+  def test_can_commit_author_name(self, initializedRepo, stagedFile):
+    gitApi.commit(initializedRepo, 'test commit', author='Joe Blow <jb@email.com>')
+    log = getCommitLog(initializedRepo)
+    assert 'Joe Blow' in log
 
 ############################
 def writeChange(filename):
@@ -92,3 +96,12 @@ def isCommitted(filename):
   log = commands.getoutput('git log')
   os.chdir(origDir)
   return 'commit' in log
+
+def getCommitLog(repo_path):
+  origDir = os.getcwd()
+  os.chdir(repo_path)
+  log = commands.getoutput('git log')
+  os.chdir(origDir)
+  return log
+
+
