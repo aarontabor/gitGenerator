@@ -1,13 +1,13 @@
 #!/usr/bin/python
 
 import pytest
-from doesCommits import DoesCommits
+from doesRandomCommits import DoesRandomCommits
 import datetime
 
-class TestDoesCommits:
+class TestDoesRandomCommits:
 
   def test_commits_change(self):
-    doesCommits = DoesCommits()
+    doesCommits = DoesRandomCommits()
     now = datetime.datetime.now()
     assert doesCommits.commit('Alice', now)
 
